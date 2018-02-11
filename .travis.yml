@@ -1,0 +1,2 @@
+language: csharp
+solution: BizTalkComponents.PipelineComponents.SetFileName.sln
