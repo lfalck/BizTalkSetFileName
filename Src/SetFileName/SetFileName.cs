@@ -17,41 +17,41 @@ namespace BizTalkComponents.PipelineComponents.SetFileName
     public partial class SetFileName : IComponent, IBaseComponent,
                                         IPersistPropertyBag, IComponentUI
     {
-        [DisplayName("Property Path")]
-        [Description("Property description")]
+        [DisplayName("Include original filename?")]
+        [Description("{0} in custom format")]
         [RequiredRuntime]
         public bool IncludeOriginalFilename { get; set; }
 
-        [DisplayName("Property Path")]
-        [Description("Property description")]
+        [DisplayName("XPath 1")]
+        [Description("XPath to value to include in filename ({1} in custom format)")]
         public string XPath1 { get; set; }
 
-        [DisplayName("Property Path")]
-        [Description("Property description")]
+        [DisplayName("XPath 2")]
+        [Description("XPath to value to include in filename ({2} in custom format)")]
         public string XPath2 { get; set; }
 
-        [DisplayName("Property Path")]
-        [Description("Property description")]
+        [DisplayName("XPath 2")]
+        [Description("XPath to value to include in filename ({3} in custom format)")]
         public string XPath3 { get; set; }
 
-        [DisplayName("Property Path")]
-        [Description("Property description")]
+        [DisplayName("File extension")]
+        [Description("Specify a file extension if it should be changed")]
         public string Extension { get; set; }
 
-        [DisplayName("Property Path")]
-        [Description("Property description")]
+        [DisplayName("Custom format")]
+        [Description("Specify a custom format, default is {0}{1}{2}{3}{4}")]
         public string Format { get; set; } = "{0}{1}{2}{3}{4}";
 
-        [DisplayName("Property Path")]
-        [Description("Property description")]
+        [DisplayName("Separator")]
+        [Description("Specify a separator if it should be changed, default is _")]
         public char Separator { get; set; } = '_';
 
-        [DisplayName("Property Path")]
-        [Description("Property description")]
+        [DisplayName("Include date?")]
+        [Description("Default format is yyyy-MM-ddTHH:mm:ss")]
         public bool IncludeDate { get; set; }
 
-        [DisplayName("Property Path")]
-        [Description("Property description")]
+        [DisplayName("Date format")]
+        [Description("Specify a date format if it should be changed, default is yyyy-MM-ddTHH:mm:ss")]
         public string DateFormat { get; set; } = "yyyy-MM-ddTHH:mm:ss";
 
         public IBaseMessage Execute(IPipelineContext pContext, IBaseMessage pInMsg)
