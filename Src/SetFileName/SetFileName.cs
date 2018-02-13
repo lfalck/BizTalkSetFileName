@@ -40,11 +40,11 @@ namespace BizTalkComponents.PipelineComponents.SetFileName
 
         [DisplayName("Custom format")]
         [Description("Specify a custom format, default is {0}{1}{2}{3}{4}")]
-        public string Format { get; set; } = "{0}{1}{2}{3}{4}";
+        public string Format { get; set; }
 
         [DisplayName("Separator")]
         [Description("Specify a separator if it should be changed, default is _")]
-        public char Separator { get; set; } = '_';
+        public char Separator { get; set; }
 
         [DisplayName("Include date?")]
         [Description("Default format is yyyy-MM-ddTHH:mm:ss")]
@@ -52,7 +52,7 @@ namespace BizTalkComponents.PipelineComponents.SetFileName
 
         [DisplayName("Date format")]
         [Description("Specify a date format if it should be changed, default is yyyy-MM-ddTHH:mm:ss")]
-        public string DateFormat { get; set; } = "yyyy-MM-ddTHH:mm:ss";
+        public string DateFormat { get; set; }
 
         public IBaseMessage Execute(IPipelineContext pContext, IBaseMessage pInMsg)
         {
@@ -62,6 +62,11 @@ namespace BizTalkComponents.PipelineComponents.SetFileName
             {
                 throw new ArgumentException(errorMessage);
             }
+
+            //Set default values
+            if (Format == null) Format = "{0}{1}{2}{3}{4}";
+            if (Separator == default(char)) Separator = '_';
+            if (DateFormat == null) DateFormat = "yyyy-MM-ddTHH:mm:ss";
 
             var receivedFileName = new ContextProperty(FileProperties.ReceivedFileName);
 
@@ -76,13 +81,16 @@ namespace BizTalkComponents.PipelineComponents.SetFileName
             var xPaths = new[] { XPath1, XPath2, XPath3 }.Where(x => x != null).ToArray();
             Dictionary<string, string> xPathToValueMap = pInMsg.SelectMultiple(xPaths);
 
-            string value1 = XPath1 != null && xPathToValueMap.TryGetValue(XPath1, out string outValue1) ?
+            string outValue1;
+            string value1 = XPath1 != null && xPathToValueMap.TryGetValue(XPath1, out outValue1) ?
                 outValue1 + Separator : string.Empty;
 
-            string value2 = XPath2 != null && xPathToValueMap.TryGetValue(XPath2, out string outValue2) ?
+            string outValue2;
+            string value2 = XPath2 != null && xPathToValueMap.TryGetValue(XPath2, out outValue2) ?
                 outValue2 + Separator : string.Empty;
 
-            string value3 = XPath3 != null && xPathToValueMap.TryGetValue(XPath3, out string outValue3) ?
+            string outValue3;
+            string value3 = XPath3 != null && xPathToValueMap.TryGetValue(XPath3, out outValue3) ?
                outValue3 + Separator : string.Empty;
 
             string date = IncludeDate ?
