@@ -115,7 +115,7 @@ namespace BizTalkComponents.PipelineComponents.SetFileName.Tests.UnitTests
                 XPath1 = "/root/element1[1]",
                 XPath2 = "/root/element2[1]",
                 XPath3 = "/root/element3[1]",
-                Separator = ' '
+                Separator = " "
             };
 
             pipeline.AddComponent(component, PipelineStage.Encode);

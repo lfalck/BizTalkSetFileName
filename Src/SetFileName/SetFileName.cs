@@ -44,7 +44,7 @@ namespace BizTalkComponents.PipelineComponents.SetFileName
 
         [DisplayName("Separator")]
         [Description("Specify a separator if it should be changed, default is _")]
-        public char Separator { get; set; }
+        public string Separator { get; set; }
 
         [DisplayName("Include date?")]
         [Description("Default format is yyyy-MM-ddTHH:mm:ss")]
@@ -65,7 +65,7 @@ namespace BizTalkComponents.PipelineComponents.SetFileName
 
             //Set default values
             if (Format == null) Format = "{0}{1}{2}{3}{4}";
-            if (Separator == default(char)) Separator = '_';
+            if (Separator == null) Separator = "_";
             if (DateFormat == null) DateFormat = "yyyy-MM-ddTHHmmss";
 
             var receivedFileName = new ContextProperty(FileProperties.ReceivedFileName);
@@ -97,11 +97,11 @@ namespace BizTalkComponents.PipelineComponents.SetFileName
                 DateTime.Now.ToString(DateFormat) + Separator : string.Empty;
 
             string result = string.Format(Format, originalFileNameWithoutExtension, value1, value2, value3, date)
-                .TrimEnd(new char[] { Separator }) + extension;
+                .TrimEnd(new char[] { char.Parse(Separator) }) + extension;
 
             if (Path.GetInvalidFileNameChars().Any(c => result.Contains(c)))
             {
-                throw new ArgumentException("Resulting filename contains invalid characters");
+                throw new ArgumentException("Filename result contains invalid characters");
             }
 
             pInMsg.Context.Write(receivedFileName.PropertyName, receivedFileName.PropertyNamespace, result);
