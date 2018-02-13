@@ -168,5 +168,28 @@ namespace BizTalkComponents.PipelineComponents.SetFileName.Tests.UnitTests
             Assert.AreEqual(originalFileName, newFileName);
         }
 
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Filename result contains invalid characters")]
+        public void SetFileName_ShouldThrow_WhenFileNameContainsIllegalCharacters()
+        {
+            var component = new SetFileName()
+            {
+                XPath1 = "/root/element[1]"
+            };
+            pipeline.AddComponent(component, PipelineStage.Encode);
+
+            string inputXml =
+           @"<root>
+                <element>:</element>
+            </root>";
+
+            string expectedXml = inputXml;
+
+            var msg = MessageHelper.Create(inputXml);
+            msg.Context.Write(receivedFileName.PropertyName, receivedFileName.PropertyNamespace, originalFileName);
+
+            var result = pipeline.Execute(msg);
+        }
     }
 }
