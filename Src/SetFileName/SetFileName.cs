@@ -47,7 +47,7 @@ namespace BizTalkComponents.PipelineComponents.SetFileName
         public string Separator { get; set; }
 
         [DisplayName("Include date?")]
-        [Description("Default format is yyyy-MM-ddTHH:mm:ss")]
+        [Description("Default format is yyyy-MM-ddTHHmmss ({2} in custom format)")]
         public bool IncludeDate { get; set; }
 
         [DisplayName("Date format")]
