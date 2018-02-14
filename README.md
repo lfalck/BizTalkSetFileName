@@ -8,7 +8,7 @@ Set the filename to **%SourceFileName%**.
 
 | Parameter                    | Description                                                               | Type| Validation|
 | -----------------------------|---------------------------------------------------------------------------|-----|--------|
-|Include original filename?|{0} in custom format.|String|Optional|
+|Include original filename?|Original filename excluding extension. {0} in custom format.|String|Optional|
 |XPath1|XPath to first value in message to include in filename. {1} in custom format.|String|Optional|
 |XPath2|XPath to second value in message to include in filename. {1} in custom format.|String|Optional|
 |XPath3|XPath to third value in message to include in filename. {2} in custom format.|String|Optional|
