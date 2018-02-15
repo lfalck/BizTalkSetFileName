@@ -1,4 +1,4 @@
-[![license](https://img.shields.io/github/license/lfalck/compare-remoteassemblies.svg)]()
+[![license](https://img.shields.io/github/license/lfalck/BizTalkSetFileName.svg)]()
 # BizTalkSetFileName
 A BizTalk pipeline component which can change filenames to include custom date formats and information from the message.
 
